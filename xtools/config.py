@@ -12,8 +12,8 @@ def load_config(file):
 
 class Config:
 
-    def __init__(self, file):
-        self._cf = load_config(file)
+    def __init__(self, config):
+        self._cf = config if isinstance(config, dict) else load_config(config)
         self._retrieve(self._cf)
 
     def _retrieve(self, cf):
