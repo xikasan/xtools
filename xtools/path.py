@@ -10,7 +10,7 @@ def go_to_root(root_name=None, verbose=False):
     if root_name is not None:
         pos_root = cwd.find(root_name) + len(root_name)
     else:
-        pos_workspace = cwd.find("workspace/") + len("workspace/")
+        pos_workspace = cwd.find("workspace") + len("workspace/")
         sub_cwd = cwd[pos_workspace:]
         pos_root = pos_workspace + sub_cwd.find("/")
 
