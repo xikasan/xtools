@@ -7,6 +7,7 @@ import datetime
 # path correction
 def go_to_root(root_name=None, verbose=False):
     cwd = os.getcwd()
+    cwd = cwd.replace("\\", "/")
     if root_name is not None:
         pos_root = cwd.find(root_name) + len(root_name)
     else:
