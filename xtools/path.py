@@ -25,6 +25,7 @@ def go_to_root(file_path, root_name, verbose=False):
     pos_root = file_path.rfind("/"+root_name+"/") + len(root_name)
     root_path = file_path[:pos_root]
     root_path, _ = up_dir_path(root_path, 1)
+    os.chdir(root_path)
     return root_path
 
 
