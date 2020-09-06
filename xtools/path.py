@@ -5,21 +5,27 @@ import datetime
 
 
 # path correction
-def go_to_root(root_name=None, verbose=False):
-    cwd = os.getcwd()
-    cwd = cwd.replace("\\", "/")
-    if root_name is not None:
-        pos_root = cwd.find(root_name) + len(root_name)
+def up_dir_path(path, num_hierarchy):
+    if os.name == 'nt':
+        temp = path.split('\\')
     else:
-        pos_workspace = cwd.find("workspace/") + len("workspace/")
-        sub_cwd = cwd[pos_workspace:]
-        pos_root = pos_workspace + sub_cwd.find("/")
+        temp = path.split('/')
+    abs_path = os.path.join(*temp[:-num_hierarchy])
+    dir_name = temp[-num_hierarchy]
+    return abs_path, dir_name
 
-    root_path = cwd[0:pos_root]
-    os.chdir(root_path)
 
-    if verbose:
-        print("[info] cwd:", os.getcwd())
+def go_to_root(file_path, root_name, verbose=False):
+    # doner the path(__file__) of override code of this method as argument parameter `file_path`
+    # and the package name as `root_name`
+    assert isinstance(file_path, str) and isinstance(root_name, str), "give file path and root name as type `str`"
+    assert file_path.find(root_name) > 0,\
+        "root name `{}` is not found in given file path `{}`".format(root_name, file_path)
+    file_path.replace('\\', '/')
+    pos_root = file_path.rfind("/"+root_name+"/") + len(root_name)
+    root_path = file_path[:pos_root]
+    root_path, _ = up_dir_path(root_path, 1)
+    return root_path
 
 
 def join(*args):
