@@ -4,3 +4,4 @@ from .config import *
 from .display import *
 from .path import *
 from .math import *
+from .random import *
