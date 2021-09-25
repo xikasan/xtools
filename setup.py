@@ -19,5 +19,5 @@ setup(
     url='https://github.com/xikasan/xtools',
     license=license,
     packages=find_packages(exclude=('tests', 'docs')),
-    install_requires=['numpy', 'pyyaml', 'cached-property']
+    install_requires=['numpy', 'PyYAML', 'cached-property']
 )
