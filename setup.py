@@ -11,12 +11,13 @@ with open('LICENSE') as f:
 
 setup(
     name='xtools',
-    version='0.3.0',
+    version='0.3.1',
     description="xikasan's basic tool set",
     long_description=readme,
     author='xikasan',
     # author_email='',
     url='https://github.com/xikasan/xtools',
     license=license,
-    packages=find_packages(exclude=('tests', 'docs'))
+    packages=find_packages(exclude=('tests', 'docs')),
+    install_requires=['numpy', 'pyyaml', 'cached-property']
 )
